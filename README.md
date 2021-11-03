@@ -1,1 +1,2 @@
-carlosgatti-blog-api-node
+# api-node-gt
+api para o projeto gatti trading

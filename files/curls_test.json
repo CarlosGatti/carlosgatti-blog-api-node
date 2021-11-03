@@ -1,0 +1,12 @@
+curl http://localhost:3000/users/user \
+  -X POST \
+  -v \
+  -H "Content-type: application/json" \
+  -d '{
+          "name": "Carlos Gatti",
+          "email": "eduardo.gf@hotmail.com",
+          "password": "Asdf1234"
+      }'
+
+
+curl http://localhost:3000/users/user -X POST -v -H "Content-type: application/json" -d @files/user.json | json_pp

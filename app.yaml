@@ -1,0 +1,17 @@
+runtime: nodejs
+env: flex
+
+manual_scaling:
+    instances: 1
+resources:
+    cpu: 1
+    memory_gb: 0.5
+    disk_size_gb: 10
+
+env_variables:
+    SQL_USER: root
+    SQL_PASSWORD: "asdf1234"
+    SQL_DATABASE: business_management
+    INSTANCE_CONNECTIONS_NAME: backend-gatti-trading:us-central1:db-gatti
+
+
