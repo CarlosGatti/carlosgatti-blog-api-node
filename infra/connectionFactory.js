@@ -3,10 +3,10 @@ require('dotenv').config();
 
 function createDBConnection(){
   return mysql.createConnection({
-    host:process.env.CLEAR_DATABASE_URL,
-    user:process.env.CLEAR_DATABASE_USER, 
-    password:process.env.CLEAR_DATABASE_PASSWORD,
-    database:process.env.CLEAR_DATABASE,
+    host:process.env.CLEARDB_DATABASE_URL,
+    user:process.env.CLEARDB_DATABASE_USER, 
+    password:process.env.CLEARDB_DATABASE_PASSWORD,
+    database:process.env.CLEARDB_DATABASE,
   });
 }
 
