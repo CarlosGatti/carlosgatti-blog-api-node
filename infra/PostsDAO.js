@@ -3,15 +3,15 @@ function PostsDAO(connection) {
 }
 
 PostsDAO.prototype.LatestPosts = function (callback) {
-    this._connection.query("SELECT a.Id, a.Title, CONCAT(LEFT(a.Text,120),'...') AS Text, a.DateUpdated AS Date, b.Title as Theme, c.Title as Category, u.Email "+
+    this._connection.query("SELECT a.Id, a.Title, CONCAT(LEFT(a.Text, 120),'...') AS Text, a.DateUpdated AS Date, b.Title as Theme, c.Title as Category, u.Email "+
     "FROM Posts a INNER JOIN Themes b ON (a.Themes_Id=b.Id)" + 
     "INNER JOIN User u ON (a.UserId=u.Id)" + 
     "INNER JOIN Knowledge c ON (c.Id=b.Knowledge_Id)" + 
-    "INNER JOIN Pillars d ON (d.Id=c.Pillars_Id) ORDER BY a.Id DESC LIMIT 3", callback);
+    "INNER JOIN Pillars d ON (d.Id=c.Pillars_Id) ORDER BY a.Id DESC LIMIT 4", callback);
 }
 
 PostsDAO.prototype.AllPosts = function (callback) {
-    this._connection.query("SELECT a.Id, a.Title, a.Text, a.DateUpdated AS Date, a.Img, b.Title as Theme, c.Title as Category, u.Email "+
+    this._connection.query("SELECT a.Id, a.Title, CONCAT(LEFT(a.Text, 120),'...') AS Text, a.DateUpdated AS Date, a.Img, b.Title as Theme, c.Title as Category, u.Email "+
     "FROM Posts a INNER JOIN Themes b ON (a.Themes_Id=b.Id)" + 
     "INNER JOIN User u ON (a.UserId=u.Id)" + 
     "INNER JOIN Knowledge c ON (c.Id=b.Knowledge_Id)" + 
