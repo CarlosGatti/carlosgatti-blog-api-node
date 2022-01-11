@@ -3,7 +3,7 @@ function PostsDAO(connection) {
 }
 
 PostsDAO.prototype.LatestPosts = function (callback) {
-    this._connection.query("SELECT a.Id, a.Title, CONCAT(LEFT(a.Text, 120),'...') AS Text, a.DateUpdated AS Date, b.Title as Theme, c.Title as Category, u.Email, u.AvatarImg "+
+    this._connection.query("SELECT a.Id, a.Title, CONCAT(LEFT(a.Text, 120),'...') AS Text, a.DateUpdated AS Date, a.Img, b.Title as Theme, c.Title as Category, u.Email, u.AvatarImg "+
     "FROM Posts a INNER JOIN Themes b ON (a.Themes_Id=b.Id)" + 
     "INNER JOIN User u ON (a.UserId=u.Id)" + 
     "INNER JOIN Knowledge c ON (c.Id=b.Knowledge_Id)" + 
