@@ -7,7 +7,7 @@ PostsDAO.prototype.LatestPosts = function (callback) {
     "FROM Posts a INNER JOIN Themes b ON (a.Themes_Id=b.Id)" + 
     "INNER JOIN User u ON (a.UserId=u.Id)" + 
     "INNER JOIN Knowledge c ON (c.Id=b.Knowledge_Id)" + 
-    "INNER JOIN Pillars d ON (d.Id=c.Pillars_Id) ORDER BY a.Id DESC LIMIT 4", callback);
+    "INNER JOIN Pillars d ON (d.Id=c.Pillars_Id) ORDER BY a.Id DESC LIMIT 10", callback);
 }
 
 PostsDAO.prototype.AllPosts = function (callback) {
