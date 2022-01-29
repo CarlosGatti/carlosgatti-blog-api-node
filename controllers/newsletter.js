@@ -14,19 +14,21 @@ module.exports = function (app) {
     app.post('/api/newsletter/register', function (req, res) {
         var newsletter = [];
         newsletter = req.body;
-       console.log(newsletter)
+
+        req.assert("Name", "name is too small.").isLength({ min: 10 });
         req.assert("Email", "email is incorrect.").isEmail();
 
         var errors = req.validationErrors();
         if (errors) {
-            console.log("Validation errors.");
             res.status(400).send({errors});
             return;
         }
 
         var connection = app.infra.connectionFactory();
         var newsletterDAO = new app.infra.NewsletterDAO(connection);
+
         var email = newsletter.Email;
+        
    
         newsletterDAO.getEmail(email, async (err, results) => {
             if (err) throw err;
