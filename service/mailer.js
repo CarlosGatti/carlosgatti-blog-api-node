@@ -3,22 +3,22 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var handlebars = require('handlebars');
 var fs = require('fs');
+require('dotenv').config();
+
 
 smtpTransport = nodemailer.createTransport(smtpTransport({
     host: "smtp.zoho.com",
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: "carlos@carlosgatti.com",
-        pass: "Gizelly9"
+        user: process.env.EMAIL_USER,
+        pass: process.env.PASS
     },
     debug: true, // show debug output
     logger: true // log information in console
 }));
 
 function email(email, req, res, next) {
-
-    console.log("veio", email)
 
     var readHTMLFile = function (path, callback) {
         fs.readFile(path, { encoding: 'utf-8' }, function (err, html) {
@@ -39,9 +39,9 @@ function email(email, req, res, next) {
         };
         var htmlToSend = template(replacements);
         var mailOptions = {
-            from: "carlos@carlosgatti.com", // sender address
+            from: process.env.EMAIL_PASS, // sender address
             to: email, // list of receivers
-            subject: 'Gatti Trading :: Dashboard', // Subject line
+            subject: 'CARLOS GATTI :: Blog', // Subject line
             html: htmlToSend,
 
             attachments: [{
