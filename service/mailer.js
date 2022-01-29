@@ -12,7 +12,7 @@ smtpTransport = nodemailer.createTransport(smtpTransport({
     secure: true, // use SSL
     auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.PASS
+        pass: process.env.EMAIL_PASS
     },
     debug: true, // show debug output
     logger: true // log information in console
