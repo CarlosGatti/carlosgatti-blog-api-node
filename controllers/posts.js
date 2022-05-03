@@ -26,7 +26,6 @@ module.exports = function (app) {
         return;
       }
       logger.info('He searched for ' + JSON.stringify(result));
-      console.log(result);
       res.json(result);
     });
   });
