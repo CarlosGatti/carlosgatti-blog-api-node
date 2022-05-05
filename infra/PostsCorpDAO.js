@@ -7,6 +7,11 @@ PostsCorpDAO.prototype.AllPostsCorp = function (callback) {
     " FROM postscorp ORDER BY a.Id DESC LIMIT 10", callback);
 }
 
+PostsCorpDAO.prototype.LastPostsCorpFooter = function (callback) {
+    this._connection.query("SELECT a.Id, a.SmallTitle, a.BigTitle, a.HeaderImg" + 
+    " FROM postscorp a ORDER BY a.Id DESC LIMIT 2", callback);
+}
+
 PostsCorpDAO.prototype.AllSlugsCorp = function (callback) {
     this._connection.query("SELECT Id FROM postscorp", callback);
 }
