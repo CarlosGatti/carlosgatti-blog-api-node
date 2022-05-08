@@ -15,27 +15,28 @@ module.exports = function (app) {
         var newsletter = [];
         newsletter = req.body;
 
-        req.assert("Name", "name is too small.").isLength({ min: 10 });
-        req.assert("Email", "email is incorrect.").isEmail();
-
+        req.assert("name", "name is too small.").isLength({ min: 10 });
+        req.assert("email", "email is incorrect.").isEmail();
+   
         var errors = req.validationErrors();
         if (errors) {
+            console.log("Validation errors.");
             res.status(400).send({errors});
             return;
         }
 
         var connection = app.infra.connectionFactory();
         var newsletterDAO = new app.infra.NewsletterDAO(connection);
-
-        var email = newsletter.Email;
-        
-   
+        var email = newsletter.email;
+    
         newsletterDAO.getEmail(email, async (err, results) => {
             if (err) throw err;
+          
             if (results[0]) {
-                return res.send(JSON.stringify({ msg: "This email is already registered in our newsletter.", results }));
+                res.status(200).json({ msg: 'This email is already registered in our newsletter.' })
+                return //res.send({ msg: "This email is already registered in our newsletter.", results });
             } else {
-                emailNewsletter(email);
+               // emailNewsletter(email);
                 await RegistraNewsletter(newsletter);
                 return res.send(JSON.stringify({ msg: "Congratulations. Stay tuned and check your span box to make sure our emails aren't going there.", results }));
             }
