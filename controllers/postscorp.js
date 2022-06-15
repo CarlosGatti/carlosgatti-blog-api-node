@@ -16,6 +16,20 @@ module.exports = function (app) {
     });
   });
 
+  app.get('/api/slugblogdetail/', function (req, res) {
+    var connection = app.infra.connectionFactory();
+    var postsCorpDAO = new app.infra.PostsCorpDAO(connection);
+    postsCorpDAO.BlogPostProject(function(error, result) {
+      if(error){
+        console.log('Error in query in database. ' + error);
+        res.status(500).send(error);
+        return;
+      }
+      logger.info('He searched for ' + JSON.stringify(result));
+      res.json(result);
+    });
+  });
+
   app.get('/api/lastspostcorpfooter/', function (req, res) {
     
     
@@ -31,6 +45,30 @@ module.exports = function (app) {
       res.json(result);
     });
   });
+
+
+
+
+  app.get('/api/blog-post-project/', function(req, res){
+
+    var connection = app.infra.connectionFactory();
+    var postsCorpDAO = new app.infra.PostsCorpDAO(connection);
+
+    postsCorpDAO.BlogPostProject(function(error, result) {
+      if(error){
+        console.log('Error in query in database. ' + error);
+        res.status(500).send(error);
+        return;
+      }
+      logger.info('He searched for ' + JSON.stringify(result));
+      res.json(result);
+    });
+
+  });
+
+
+
+
 
   app.get('/api/postcorp/:id', function (req, res) {
     
@@ -58,4 +96,42 @@ module.exports = function (app) {
         })
     });
   });
+
+
+
+  app.get('/api/blogpostdetail/:id', function (req, res) {
+    
+    var id = req.params.id;
+    console.log('consultando post ' + id);
+    var connection = app.infra.connectionFactory();
+    var postsCorpDAO = new app.infra.PostsCorpDAO(connection);
+
+    postsCorpDAO.BlogPostDetailId(id, async function(error, result) {
+
+
+        console.log("aqui", result);  
+
+        if(error){
+        console.log('Error in query in database. ' + error);
+        res.status(500).send(error);
+        return;
+        }
+
+        logger.info('He searched for ' + JSON.stringify(result));
+
+
+        console.log(result)
+  
+   
+        res.json(result);
+
+        
+    });
+  });
+
+
+
+
+
+
 };
