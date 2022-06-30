@@ -73,7 +73,7 @@ module.exports = function (app) {
   app.get('/api/postcorp/:id', function (req, res) {
     
     var id = req.params.id;
-    console.log('consultando post ' + id);
+    console.log('consultando service ' + id);
     var connection = app.infra.connectionFactory();
     var postsCorpDAO = new app.infra.PostsCorpDAO(connection);
 
@@ -90,9 +90,7 @@ module.exports = function (app) {
   
         await postsCorpDAO.PostByIdGallery(id, function(error, result){   
             const spread = { data: dataPost, imgs: result }  
-            console.log(spread)
             res.json(spread);
-
         })
     });
   });
@@ -117,12 +115,7 @@ module.exports = function (app) {
         return;
         }
 
-        logger.info('He searched for ' + JSON.stringify(result));
-
-
-        console.log(result)
-  
-   
+        logger.info('He searched for ' + JSON.stringify(result));   
         res.json(result);
 
         

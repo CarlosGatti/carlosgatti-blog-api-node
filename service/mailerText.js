@@ -9,16 +9,14 @@ smtpTransport = nodemailer.createTransport(smtpTransport({
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: "carlos@carlosgatti.com",
-        pass: "Gizelly9"
+        user: "website@gbhomeimprovementcorp.com",
+        pass: "escolher password"
     },
     debug: true, // show debug output
     logger: true // log information in console
 }));
 
 function email(email, req, res, next) {
-
-    console.log("veio", email)
 
     var readHTMLFile = function (path, callback) {
         fs.readFile(path, { encoding: 'utf-8' }, function (err, html) {
@@ -35,13 +33,13 @@ function email(email, req, res, next) {
     readHTMLFile(__dirname + '/emails/bookmail/newsletter.html', function (err, html) {
         var template = handlebars.compile(html);
         var replacements = {
-            username: "Gatti Trading"
+            username: "Website GB Home Improvement"
         };
         var htmlToSend = template(replacements);
         var mailOptions = {
-            from: "carlos@carlosgatti.com", // sender address
+            from: "website@gbhomeimprovementcorp.com", // sender address
             to: email, // list of receivers
-            subject: 'Gatti Trading :: NEWSLETTER', // Subject line
+            subject: 'G&B Home Improvement :: WEBSITE CONTACT', // Subject line
             html: htmlToSend,
 
             attachments: [{
